@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css"/>
+	<title>To Do List</title>
+</head>
+<body>
+	<h1 class="todo__title">To Do List</h1>
+	<section class="todo">
+		<h2 class="todo__subtitle">Task list</h2>
+		<ul class="todo-list">
+
+			<li class="todo-list__empty">
+				<img src="./image/no-resullt.svg" alt="Empty" width="48" class="todo-list__picture">
+				<p class="todo-list__empty-text">There are currently no tasks</p>
+			</li>
+
+		</ul>
+		<div class="form">
+			<h3 class="form__title">New task</h3>
+			<div class="form__wrapper">
+				<form id="form">
+					<input type="text" class="form__input" placeholder="Task text" required>
+					<button type="submit" class="form__btn">Add</button>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/script.js"></script>
+</body>
+</html>
