@@ -3,7 +3,9 @@
 window.addEventListener('DOMContentLoaded', () => {
 	const form = document.querySelector('#form'),
 		  taskInput = document.querySelector('.form__input'),
-		  taskList = document.querySelector('.todo-list');
+		  taskList = document.querySelector('.todo-list'),
+		  clearBtn = document.querySelector('.clear-btn'),
+		  todoButtons = document.querySelector('.todo__buttons');
 
 	let tasks = [];
 
@@ -23,6 +25,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	form.addEventListener('submit', addTask);
 	taskList.addEventListener('click', deleteTask);
 	taskList.addEventListener('click', doneTask);
+	clearBtn.addEventListener('click', clearTask);
 
 	function addTask(e) {
 		e.preventDefault();
@@ -90,7 +93,13 @@ window.addEventListener('DOMContentLoaded', () => {
 		saveToLocalStorage();
 
 		taskTitle.classList.toggle('todo-list__title-done');
-		taskWrapper.classList.toggle('todo-list-done');
+		parentNode.classList.toggle('done');
+
+		if (parentNode.classList.contains('done')) {
+			parentNode.classList.remove('not-done');
+		} else {
+			parentNode.classList.add('not-done');
+		}
 	}
 
 	function checkEmptyList() {
@@ -103,6 +112,12 @@ window.addEventListener('DOMContentLoaded', () => {
 			`;
 
 			taskList.insertAdjacentHTML('afterbegin', emptyListHTML);
+
+			todoButtons.classList.remove('show');
+			todoButtons.classList.add('hide');
+		} else {
+			todoButtons.classList.remove('hide');
+			todoButtons.classList.add('show');
 		}
 
 		if (tasks.length > 0) {
@@ -122,7 +137,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		// Формируем разметку для новой задачи
 		const taskHTML = `
-			<li id="${task.id}" class="todo-list__item">
+			<li id="${task.id}" class="todo-list__item not-done">
 				<div class="${cssClassWrapper}">
 				<span class="${cssClassTitle}">${task.text}</span>
 				<div class="todo-list__buttons">
@@ -140,9 +155,31 @@ window.addEventListener('DOMContentLoaded', () => {
 		taskList.insertAdjacentHTML('beforeend', taskHTML);
 	}
 
-	function SortArray(x, y){
-		if (x.text < y.text) {return -1;}
-		if (x.text > y.text) {return 1;}
-		return 0;
+	function clearTask() {
+		document.querySelectorAll('.todo-list__item').forEach(item => {
+			item.remove();
+		});
+
+		tasks = [];
+
+		saveToLocalStorage();
+
+		checkEmptyList();
 	}
+
+	function filterTask() {
+		const filter = document.querySelector('.filter');
+
+		filter.addEventListener('click', e => {
+			let filterClass = e.target.dataset['status'];
+			document.querySelectorAll('.todo-list__item').forEach(item => {
+				item.classList.remove('hide');
+				if(!item.classList.contains(filterClass) && filterClass !== 'all') {
+					item.classList.add('hide');
+				}
+			});
+		});
+	}
+	
+	filterTask();
 });

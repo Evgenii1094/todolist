@@ -21,9 +21,16 @@ body {
   padding: 20px;
   position: absolute;
   left: 50%;
-  transform: translate(-50%, -50%);
-  top: 50%;
+  transform: translateX(-50%);
+  top: 120px;
   width: 100%;
+}
+
+.todo__wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .todo__title {
@@ -39,7 +46,6 @@ body {
   color: #000;
   font-size: 25px;
   font-weight: 700;
-  margin-bottom: 15px;
 }
 
 .todo-list {
@@ -69,6 +75,10 @@ body {
   padding: 15px;
 }
 
+.todo__buttons {
+  animation: showBlock 0.3s linear forwards;
+}
+
 .todo-list__item {
   animation: showBlock 0.3s linear forwards;
   background-color: #b4ad81;
@@ -87,7 +97,7 @@ body {
   }
 }
 
-.todo-list-done {
+.done {
   background-color: rgba(0, 214, 120, .3);
   border-radius: 4px;
 }
@@ -116,10 +126,16 @@ body {
   cursor: pointer;
   margin: 0 5px;
   padding: 10px;
+  transition: all 0.3s ease;
 }
 
 .btn-action img {
   pointer-events: none;
+}
+
+.btn-action:hover,
+.btn-action:focus {
+  box-shadow: 0 2px 10px 2px rgba(0, 0, 0, 0.2);
 }
 
 .form__title {
@@ -147,7 +163,7 @@ form {
   padding: 15px 10px;
 }
 
-.form__btn {
+.btn {
   background: white;
   border: 1px solid #8e7863;
   border-radius: 4px;
@@ -162,7 +178,9 @@ form {
   transition: .3s;
   width: fit-content;
 }
-.form__btn:hover {
+
+.btn:hover,
+.btn:focus {
   background: #8e7863;
   border-color: #8e7863;
   box-shadow: 0 15px 20px rgba(142, 120, 99, .4);
@@ -174,8 +192,16 @@ form {
   display: none;
 }
 
+.show {
+  display: flex;
+}
+
 @media only screen and  (max-width: 1024px) {
   .todo {
     width: 90%;
   }
+}
+
+.filter {
+  margin-right: 4px;
 }

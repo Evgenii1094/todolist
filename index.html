@@ -11,7 +11,17 @@
 <body>
 	<h1 class="todo__title">To Do List</h1>
 	<section class="todo">
-		<h2 class="todo__subtitle">Task list</h2>
+		<div class="todo__wrapper">
+			<h2 class="todo__subtitle">Task list</h2>
+			<div class="todo__buttons hide">
+				<div class="filter">
+					<button data-status="all" class="btn">All</button>
+					<button data-status="done" class="btn">Done</button>
+					<button data-status="not-done" class="btn">Not done</button>
+				</div>
+				<button class="btn clear-btn">Clear</button>
+			</div>
+		</div>
 		<ul class="todo-list">
 
 			<!-- <li class="todo-list__empty">
@@ -25,7 +35,7 @@
 			<div class="form__wrapper">
 				<form id="form">
 					<input type="text" class="form__input" placeholder="Task text" required>
-					<button type="submit" class="form__btn">Add</button>
+					<button type="submit" class="form__btn btn">Add</button>
 				</form>
 			</div>
 		</div>
